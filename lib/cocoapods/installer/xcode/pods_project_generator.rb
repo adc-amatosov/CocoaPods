@@ -304,6 +304,7 @@ module Pod
         def add_dependent_targets_to_native_target(dependent_targets, native_target, is_app_extension, requires_frameworks, frameworks_group)
           dependent_targets.each do |pod_dependency_target|
             next unless pod_dependency_target.should_build?
+            next if native_target == nil
             native_target.add_dependency(pod_dependency_target.native_target)
             configure_app_extension_api_only_for_target(pod_dependency_target) if is_app_extension
 
